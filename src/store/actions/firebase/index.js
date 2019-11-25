@@ -25,7 +25,9 @@ export const __createDoc = (params) => (dispatch) => {
   const {
     collectionName,
     docData,
-    actionType
+    actionType,
+    notifyMessage,
+    requestTypes
   } = params;
 
   const firestoreAction = async () => {
@@ -36,12 +38,8 @@ export const __createDoc = (params) => (dispatch) => {
 
   const requestConfig = {
     callback: firestoreAction,
-    notifyMessage: 'Doc created!',
-    requestTypes: {
-      'start': 'DOC::CREATE_DOC_START',
-      'success': 'DOC::CREATE_DOC_SUCCESS',
-      'failure': 'DOC::CREATE_DOC_FAILURE'
-    }
+    notifyMessage,
+    requestTypes
   };
 
   dispatch(__requestAction(requestConfig));
@@ -53,7 +51,9 @@ export const __editDoc = (params) => (dispatch) => {
   const {
     collectionName,
     docIdToEdit,
-    docData
+    docData,
+    notifyMessage,
+    requestTypes
   } = params;
 
   const firestoreAction = async () => {
@@ -65,12 +65,8 @@ export const __editDoc = (params) => (dispatch) => {
 
   const requestConfig = {
     callback: firestoreAction,
-    notifyMessage: 'Doc edited!',
-    requestTypes: {
-      'start': 'DOC::EDIT_DOC_START',
-      'success': 'DOC::EDIT_DOC_SUCCESS',
-      'failure': 'DOC::EDIT_DOC_FAILURE'
-    }
+    notifyMessage,
+    requestTypes
   };
 
   dispatch(__requestAction(requestConfig));
@@ -81,7 +77,9 @@ export const __deleteDoc = (params) => (dispatch) => {
 
   const {
     collectionName,
-    docId
+    docId,
+    notifyMessage,
+    requestTypes
   } = params;
 
   const firestoreAction = async () => {
@@ -91,12 +89,8 @@ export const __deleteDoc = (params) => (dispatch) => {
 
   const requestConfig = {
     callback: firestoreAction,
-    notifyMessage: 'Doc edited!',
-    requestTypes: {
-      'start': 'DOC::DELETE_DOC_START',
-      'success': 'DOC::DELETE_DOC_SUCCESS',
-      'failure': 'DOC::DELETE_DOC_FAILURE'
-    }
+    notifyMessage,
+    requestTypes
   };
 
   dispatch(__requestAction(requestConfig));
@@ -106,7 +100,9 @@ export const __deleteDoc = (params) => (dispatch) => {
 export const __fetchCollection = (params) => (dispatch) => {
 
   const {
-    collectionName
+    collectionName,
+    notifyMessage,
+    requestTypes
   } = params;
 
   const firestoreAction = async () => {
@@ -123,12 +119,8 @@ export const __fetchCollection = (params) => (dispatch) => {
 
   const requestConfig = {
     callback: firestoreAction,
-    notifyMessage: 'Collection fetched!',
-    requestTypes: {
-      'start': 'COL::FETCH_COL_START',
-      'success': 'COL::FETCH_COL_SUCCESS',
-      'failure': 'COL::FETCH_COL_FAILURE'
-    }
+    notifyMessage,
+    requestTypes
   };
 
   dispatch(__requestAction(requestConfig));
@@ -139,7 +131,9 @@ export const __fetchDocById = (params) => (dispatch) => {
 
   const {
     collectionName,
-    docId
+    docId,
+    notifyMessage,
+    requestTypes
   } = params;
 
   const firestoreAction = async () => {
@@ -149,12 +143,8 @@ export const __fetchDocById = (params) => (dispatch) => {
 
   const requestConfig = {
     callback: firestoreAction,
-    notifyMessage: 'Collection fetched!',
-    requestTypes: {
-      'start': 'DOC::FETCH_DOC_START',
-      'success': 'DOC::FETCH_DOC_SUCCESS',
-      'failure': 'DOC::FETCH_DOC_FAILURE'
-    }
+    notifyMessage,
+    requestTypes
   };
 
   dispatch(__requestAction(requestConfig));

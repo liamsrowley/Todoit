@@ -1,8 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { createTodo } from '../store/actions/todos';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  const todo = {
+    title: 'My todo',
+    createdBy: 'Liam Rowley',
+    dataCreated: Date.now()
+  };
+
   return (
-    <div>
+    <div onClick={() => dispatch(createTodo(todo))}>
       App
     </div>
   );
