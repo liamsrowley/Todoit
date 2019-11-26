@@ -51,15 +51,16 @@ export const __editDoc = (params) => (dispatch) => {
     collectionName,
     docIdToEdit,
     docData,
+    actionType,
     notifyMessage,
     requestTypes
   } = params;
 
   const firestoreAction = async () => {
-    await db.collection(collectionName).doc(docIdToEdit).set(
-      docData,
-      { merge: true }
+    await db.collection(collectionName).doc(docIdToEdit).update(
+      docData
     );
+    dispatch({ type: actionType, payload: { id: docIdToEdit, ...docData }});
   };
 
   const requestConfig = {
@@ -77,13 +78,14 @@ export const __deleteDoc = (params) => (dispatch) => {
   const {
     collectionName,
     docId,
+    actionType,
     notifyMessage,
     requestTypes
   } = params;
 
   const firestoreAction = async () => {
     await db.collection(collectionName).doc(docId).delete();
-    console.log("Doc deleted with id: ", docId);
+    dispatch({ type: actionType, payload: docId });
   };
 
   const requestConfig = {
@@ -100,20 +102,22 @@ export const __fetchCollection = (params) => (dispatch) => {
 
   const {
     collectionName,
+    actionType,
+    query: { key, operator, value },
     notifyMessage,
     requestTypes
   } = params;
 
   const firestoreAction = async () => {
-    const querySnapshot = await db.collection(collectionName).get();
-    let collection = [];
+    const querySnapshot = await db.collection(collectionName).where(key, operator, value).get()
+    let collection = {};
     querySnapshot.forEach(doc => {
-      collection = [
+      collection = {
         ...collection,
-        doc.data()
-      ]
+        [doc.id]: { id: doc.id, ...doc.data() }
+      }
     })
-    console.log(collection);
+    dispatch({ type: actionType, payload: collection });
   };
 
   const requestConfig = {
@@ -131,13 +135,14 @@ export const __fetchDocById = (params) => (dispatch) => {
   const {
     collectionName,
     docId,
+    actionType,
     notifyMessage,
     requestTypes
   } = params;
 
   const firestoreAction = async () => {
     const doc = await db.collection(collectionName).doc(docId).get();
-    console.log("Fetched doc:", doc.data());
+    dispatch({ type: actionType, payload: doc.data() });
   };
 
   const requestConfig = {

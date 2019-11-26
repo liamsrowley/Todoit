@@ -22,15 +22,67 @@ const baseConfig = {
   requestTypes
 }
 
-export const createTodo = (todo) => (dispatch) => {
+
+export const createTodo = (todo) => (dispatch, getState) => {
+
+  const uid = getState().auth.uid;
 
   const config = {
     ...baseConfig,
-    docData: todo,
+    docData: { ...todo, createdBy: uid },
     notifyMessage: 'Todo Created',
     actionType: TODO_CREATE,
-  }
+  };
 
   dispatch(__createDoc(config));
+
+}
+
+
+export const fetchUserTodos = () => (dispatch, getState) => {
+
+  const uid = getState().auth.uid;
+
+  const config = {
+    ...baseConfig,
+    query: {
+      key: 'createdBy',
+      operator: '==',
+      value: uid
+    },
+    notifyMessage: 'Fetched todos by user',
+    actionType: TODO_FETCH_ALL
+  };
+
+  dispatch(__fetchCollection(config));
+
+}
+
+
+export const deleteTodo = (id) => (dispatch) => {
+
+  const config = {
+    ...baseConfig,
+    docId: id,
+    notifyMessage: 'Todo deleted',
+    actionType: TODO_DELETE
+  };
+
+  dispatch(__deleteDoc(config));
+
+}
+
+
+export const editTodo = (id, formValues) => (dispatch) => {
+
+  const config = {
+    ...baseConfig,
+    docIdToEdit: id,
+    docData: formValues,
+    notifyMessage: 'Todo edited',
+    actionType: TODO_EDIT
+  };
+
+  dispatch(__editDoc(config));
 
 }
