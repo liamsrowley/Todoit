@@ -17,7 +17,7 @@ const baseConfig = {
   requestTypes
 }
 
-export const createUser = (email, password) => (dispatch) => {
+export const register = (email, password) => (dispatch) => {
   const authAction = async () => {
     await auth.createUserWithEmailAndPassword(email, password);
   }

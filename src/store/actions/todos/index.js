@@ -73,12 +73,14 @@ export const deleteTodo = (id) => (dispatch) => {
 }
 
 
-export const editTodo = (id, formValues) => (dispatch) => {
+export const editTodo = (id, formValues) => (dispatch, getState) => {
+
+  const todo = getState().todos[id];
 
   const config = {
     ...baseConfig,
     docIdToEdit: id,
-    docData: formValues,
+    docData: { ...todo, ...formValues },
     notifyMessage: 'Todo edited',
     actionType: TODO_EDIT
   };

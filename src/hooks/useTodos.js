@@ -21,11 +21,16 @@ export const useTodos = () => {
     dispatch(fetchUserTodos());
   }
 
+  const doToggleCompletion = (id, isCompleted) => {
+    dispatch(editTodo(id, { isCompleted: !isCompleted }));
+  }
+
   return {
     createTodo: doCreateTodo,
     editTodo: doEditTodo,
     deleteTodo: doDeleteTodo,
-    fetchTodos: doFetchUserTodos
+    fetchTodos: doFetchUserTodos,
+    toggleCompletion: doToggleCompletion
   }
 
 }
