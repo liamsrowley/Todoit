@@ -1,46 +1,26 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useTodos } from '../hooks/useTodos';
+import { Router, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import history from '../history';
+
+import SignIn from '../routes/Auth/SignIn';
+import Register from '../routes/Auth/Register';
 
 const App = () => {
-  const dispatch = useDispatch();
 
-  const {
-    createTodo,
-    editTodo,
-    deleteTodo,
-    fetchTodos,
-    toggleCompletion
-  } = useTodos();
+  const { setupAuthListener } = useAuth();
 
-  const {
-    signIn,
-    signOut,
-    register,
-    setupAuthListener
-  } = useAuth();
-
+  // Setup a listener to determine if the user is signed in or not
+  // and then dispatch appropriate action (SIGN_IN or SIGN_OUT)
   useEffect(() => {
     setupAuthListener();
-  }, [dispatch, setupAuthListener]);
-
-  const todo = {
-    title: 'My todo',
-  };
+  }, [setupAuthListener]);
 
   return (
-    <div>
-      <button onClick={() => register('liam.rowley@hotmail.co.uk', 'lol1lol')}>Create User</button>
-      <button onClick={() => signIn('liam.rowley@hotmail.co.uk', 'lol1lol')}>Sign In</button>
-      <button onClick={() => signOut()}>Sign Out</button>
-      <button onClick={() => createTodo(todo)}>Create todo as user</button>
-      <button onClick={fetchTodos}>Fetch todos created by user</button>
-      <button onClick={() => editTodo('6mzf21ha1gCGMRT9Bc8M', { title: 'edited todo bitch'})}>Edit a todo</button>
-      <button onClick={() => deleteTodo('kynP2fCEVGtxVXtGUBrl')}>Delete a todo</button>
-      <button onClick={() => toggleCompletion('Arl7p70i7xTn0yGVxgMG', false)}>Mark todo as completed</button>
-      App
-    </div>
+    <Router history={history}>
+      <Route path="/auth/signin" exact component={SignIn} />
+      <Route path="/auth/register" exact component={Register} />
+    </Router>
   );
 }
 
