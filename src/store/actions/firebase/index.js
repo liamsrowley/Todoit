@@ -2,7 +2,7 @@ import { firestore as db } from '../../../firebase.js';
 
 // Wrapper action that takes a callback function and attempts to invoke it,
 // dispatching errors and notification messages when relevant
-const __requestAction = (params) => async (dispatch) => {
+export const __requestAction = (params) => async (dispatch) => {
 
   const {
     callback,
@@ -14,9 +14,8 @@ const __requestAction = (params) => async (dispatch) => {
     dispatch({ type: requestTypes['start'] });
     await callback();
     dispatch({ type: requestTypes['success'] });
-  } catch ({ code, message }) {
-    console.log(message);
-    dispatch({ type: requestTypes['failure'], payload: message });
+  } catch (error) {
+    dispatch({ type: requestTypes['failure'], payload: error });
   }
 }
 

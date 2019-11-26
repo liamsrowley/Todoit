@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { todosReducer } from './todosReducer';
+import { todoReducer } from './todoReducer';
+import { authReducer } from './authReducer';
 
 export default combineReducers({
-  'todos': todosReducer
+  'auth': authReducer,
+  'todos': todoReducer
 });

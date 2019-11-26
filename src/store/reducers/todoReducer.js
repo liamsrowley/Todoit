@@ -4,7 +4,7 @@ import {
 
 import _ from 'lodash';
 
-export const todosReducer = (state = {}, action) => {
+export const todoReducer = (state = {}, action) => {
 
   switch (action.type) {
     case TODO_CREATE:
