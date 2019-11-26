@@ -5,6 +5,7 @@ import history from '../history';
 
 import SignIn from '../routes/Auth/SignIn';
 import Register from '../routes/Auth/Register';
+import Todos from '../routes/Todos/Todos';
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
     <Router history={history}>
       <Route path="/auth/signin" exact component={SignIn} />
       <Route path="/auth/register" exact component={Register} />
+      <Route path="/" exact component={Todos} />
     </Router>
   );
 }

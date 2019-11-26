@@ -1,6 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { createTodo, editTodo, deleteTodo, fetchUserTodos } from '../store/actions/todos';
 
+import {
+  TODO_EDIT
+} from '../store/actions/todos';
+
 export const useTodos = () => {
 
   const dispatch = useDispatch();
@@ -25,12 +29,17 @@ export const useTodos = () => {
     dispatch(editTodo(id, { isCompleted: !isCompleted }));
   }
 
+  const doToggleEditMode = (id, isEditing) => {
+    dispatch({ type: TODO_EDIT, payload: { id, isEditing } });
+  }
+
   return {
     createTodo: doCreateTodo,
     editTodo: doEditTodo,
     deleteTodo: doDeleteTodo,
     fetchTodos: doFetchUserTodos,
-    toggleCompletion: doToggleCompletion
+    toggleCompletion: doToggleCompletion,
+    toggleEditMode: doToggleEditMode
   }
 
 }

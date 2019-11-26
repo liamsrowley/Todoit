@@ -17,7 +17,9 @@ export const todoReducer = (state = {}, action) => {
       return { ...state, ...action.payload };
 
     case TODO_EDIT:
-      return { ...state, [action.payload.id]: action.payload };
+      const prevTodo = state[action.payload.id];
+      const updatedTodo = { ...prevTodo, ...action.payload };
+      return { ...state, [action.payload.id]: updatedTodo };
 
     case TODO_DELETE:
       return _.omit(state, action.payload);
