@@ -10,13 +10,15 @@ export const TODO_REQUEST_START = 'TODO::REQUEST_START';
 export const TODO_REQUEST_SUCCESS = 'TODO::REQUEST_SUCCESS';
 export const TODO_REQUEST_FAILURE = 'TODO::REQUEST_FAILURE';
 
+// Object containing request types used to determine loading state for
+// auth actions
 const requestTypes = {
   'start': TODO_REQUEST_START,
   'success': TODO_REQUEST_SUCCESS,
   'failure': TODO_REQUEST_FAILURE
 }
 
-// Object keys that are shared among all actions
+// A base configuration object containing all shared key/value pairs
 const baseConfig = {
   collectionName: 'todos',
   requestTypes

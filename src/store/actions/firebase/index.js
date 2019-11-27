@@ -19,6 +19,13 @@ export const __requestAction = (params) => async (dispatch) => {
   }
 }
 
+/********************
+* The following actions follow the same format:
+* A callback function that carries out the main action (sign in, registration, etc)
+* A requestConfig object that is then passed into the __requestAction action
+* __requestAction then dispatches the appropriate actions for loading states,
+* error handling, notification messages and invokes the callback function
+* *******************/
 export const __createDoc = (params) => (dispatch) => {
 
   const {
