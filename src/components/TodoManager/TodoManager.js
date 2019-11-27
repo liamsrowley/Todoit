@@ -12,7 +12,6 @@ const TodoManager = () => {
 
   const {
     fetchTodos,
-    createTodo
   } = useTodos();
 
   useEffect(() => {

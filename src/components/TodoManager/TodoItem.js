@@ -6,7 +6,6 @@ import TodoEdit from './TodoEdit';
 const TodoItem = ({ id, title, isCompleted, isEditing = false }) => {
 
   const {
-    editTodo,
     deleteTodo,
     toggleCompletion,
     toggleEditMode
