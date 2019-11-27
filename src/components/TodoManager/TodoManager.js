@@ -19,14 +19,10 @@ const TodoManager = () => {
     fetchTodos();
   }, [userId]);
 
-  const onFormSubmit = (formValues) => {
-    createTodo(formValues);
-  }
-
   return (
     <div>
       <TodoList todos={todos} />
-      <TodoCreate onFormSubmit={onFormSubmit} />
+      <TodoCreate />
     </div>
   );
 }

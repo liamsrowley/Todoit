@@ -1,11 +1,16 @@
 import React from 'react';
+import { useTodos } from '../../hooks/useTodos';
 
 import TodoForm from './TodoForm';
 
 const TodoCreate = () => {
 
+  const {
+    createTodo
+  } = useTodos();
+
   const onFormSubmit = (formValues) => {
-    console.log(formValues);
+    createTodo(formValues);
   }
 
   return (

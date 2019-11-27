@@ -30,6 +30,7 @@ export const useTodos = () => {
   }
 
   const doToggleEditMode = (id, isEditing) => {
+    console.log(isEditing);
     dispatch({ type: TODO_EDIT, payload: { id, isEditing } });
   }
 

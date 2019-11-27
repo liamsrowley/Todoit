@@ -11,8 +11,8 @@ const TodoEdit = ({ id, title }) => {
   } = useTodos();
 
   const onFormSubmit = async (formValues) => {
-    await editTodo(id, formValues);
     toggleEditMode(id, false);
+    await editTodo(id, formValues);
   }
 
   const initialValues = {
