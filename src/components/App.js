@@ -6,6 +6,7 @@ import history from '../history';
 import SignIn from '../routes/Auth/SignIn';
 import Register from '../routes/Auth/Register';
 import Todos from '../routes/Todos/Todos';
+import Header from './Header/Header';
 
 import { Box } from '@chakra-ui/core';
 
@@ -22,7 +23,8 @@ const App = () => {
   return (
     <Router history={history}>
       <Box h="100vh" bg="gray.100">
-        <Box maxW="960px" mx="auto">
+        <Header />
+        <Box maxW="960px" mx="auto" bg="white" mt={5} rounded={3} p={10}>
           <Route path="/auth/signin" exact component={SignIn} />
           <Route path="/auth/register" exact component={Register} />
           <Route path="/" exact component={Todos} />

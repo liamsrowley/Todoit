@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TodoItem from './TodoItem';
-import { List, Box } from '@chakra-ui/core';
+import { List } from '@chakra-ui/core';
 
 const TodoList = ({ todos }) => {
 
@@ -10,11 +10,9 @@ const TodoList = ({ todos }) => {
   })
 
   return (
-    <Box>
-      <List>
-        {renderTodoList()}
-      </List>
-    </Box>
+    <List mb={6}>
+      {renderTodoList()}
+    </List>
   );
 }
 

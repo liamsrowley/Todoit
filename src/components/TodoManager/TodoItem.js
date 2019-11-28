@@ -2,13 +2,16 @@ import React from 'react';
 import { useTodos } from '../../hooks/useTodos';
 
 import TodoEdit from './TodoEdit';
-import { IoIosCreate, IoIosTrash } from 'react-icons/io';
+import TodoControlBox from './TodoControlBox';
+import { IoIosMore, IoIosTrash, IoIosCreate } from 'react-icons/io';
 import {
-  Box,
   Text,
-  Flex,
   Stack,
-  IconButton
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Box
 } from '@chakra-ui/core';
 
 const TodoItem = ({ id, title, isCompleted, isEditing = false }) => {
@@ -32,24 +35,32 @@ const TodoItem = ({ id, title, isCompleted, isEditing = false }) => {
   }
 
   return (
-    <Flex align="center" justify="space-between" padding={[3, 6]}>
-      <Box>
-        { isEditing && <TodoEdit id={id} title={title} /> }
-        <Text fontSize="xl">{title}</Text>
-      </Box>
-      <Stack isInline spacing={2}>
-        <IconButton
-          onClick={handleTodoEdit}
-          aria-label="Edit Todo"
-          icon={IoIosCreate}
-        />
-        <IconButton
-          onClick={handleTodoDelete}
-          aria-label="Delete Todo"
-          icon={IoIosTrash}
-        />
+    <Stack isInline align="center" justify="space-between" py={6} borderBottom="1px" borderColor="gray.200">
+      <Stack isInline align="center">
+        <TodoControlBox onClick={handleTodoCompletion} isCompleted={isCompleted} />
+        { !isEditing ? (
+            <Text fontSize="xl" onClick={handleTodoEdit} pl={5}>{title}</Text>
+          ) : (
+            <TodoEdit id={id} title={title} />
+          )
+        }
       </Stack>
-    </Flex>
+      <Menu>
+        <MenuButton>
+          <IoIosMore />
+         </MenuButton>
+        <MenuList>
+          <MenuItem onClick={handleTodoEdit}>
+            <Box as={IoIosCreate} mr={3} />
+            Edit
+          </MenuItem>
+          <MenuItem onClick={handleTodoDelete}>
+            <Box as={IoIosTrash} mr={3} />
+            Delete
+          </MenuItem>
+        </MenuList>
+    </Menu>
+    </Stack>
   );
 }
 

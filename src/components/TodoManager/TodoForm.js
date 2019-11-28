@@ -10,28 +10,26 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/core';
 
-const renderInput = ({ input, meta: { touched, error }, label, type }) => {
+const renderInput = ({ input, meta: { touched, error }, label, type, placeholder }) => {
   const isInvalid = error && touched ? true : false;
   return (
-    <Stack spacing={4}>
-      <FormControl isInvalid={isInvalid}>
-        <FormLabel htmlFor={input.name}>{label}</FormLabel>
-        <Input size="md" type={type} {...input} isInvalid={isInvalid} />
-        <FormErrorMessage>{error}</FormErrorMessage>
-      </FormControl>
-    </Stack>
+    <FormControl isInvalid={isInvalid}>
+      { label && <FormLabel htmlFor={input.name}>{label}</FormLabel> }
+      <Input size="md" type={type} {...input} isInvalid={isInvalid} placeholder={placeholder} roundedRight="0" />
+      { error && <FormErrorMessage>{error}</FormErrorMessage> }
+    </FormControl>
   );
 }
 
 const TodoForm = ({ handleSubmit, onFormSubmit, buttonText }) => {
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
-      <Field name="title" type="text" component={renderInput} />
-      <button>
-        <Button variantColor="blue">
+      <Stack isInline align="center" w="auto">
+        <Field name="title" type="text" component={renderInput} placeholder="Add a todo..." />
+        <Button variantColor="blue" roundedRight="md" roundedLeft="0" type="submit">
           {buttonText}
         </Button>
-      </button>
+      </Stack>
     </form>
   );
 }

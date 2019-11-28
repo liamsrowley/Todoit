@@ -3,6 +3,10 @@ import { useTodos } from '../../hooks/useTodos';
 
 import TodoForm from './TodoForm';
 
+import {
+  Stack
+} from '@chakra-ui/core';
+
 const TodoEdit = ({ id, title }) => {
 
   const {
@@ -20,12 +24,14 @@ const TodoEdit = ({ id, title }) => {
   };
 
   return (
-    <TodoForm
-      onFormSubmit={onFormSubmit}
-      initialValues={initialValues}
-      buttonText="Save"
-      form={`todoEdit${id}`}
-    />
+    <Stack align="center" pl={5}>
+      <TodoForm
+        onFormSubmit={onFormSubmit}
+        initialValues={initialValues}
+        buttonText="Save"
+        form={`todoEdit${id}`}
+      />
+    </Stack>
   );
 }
 

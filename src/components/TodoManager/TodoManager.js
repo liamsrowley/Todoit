@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTodos } from '../../hooks/useTodos';
 
@@ -19,10 +19,10 @@ const TodoManager = () => {
   }, [userId]);
 
   return (
-    <div>
+    <Fragment>
       <TodoList todos={todos} />
       <TodoCreate />
-    </div>
+    </Fragment>
   );
 }
 
