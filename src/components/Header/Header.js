@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import UserHeader from '../UserHeader/UserHeader';
+
 import {
   Box,
   Flex,
@@ -12,7 +14,8 @@ import {
 
 const Header = () => {
 
-  const isSignedIn = useSelector(state => state.auth.uid);
+  const user = useSelector(state => state.auth);
+  const isSignedIn = user.uid;
 
   return (
     <Box bg="white" w="100%" h="70px">
@@ -30,11 +33,7 @@ const Header = () => {
                 </Button>
               </Fragment>
             ): (
-              <Fragment>
-                <Button size="sm" bg="blue.500" color="blue.50">
-                  <Link as={NavLink} to="/auth/register">Sign Out</Link>
-                </Button>
-              </Fragment>
+              <UserHeader email={user.email} />
             )}
           </Stack>
         </Flex>
