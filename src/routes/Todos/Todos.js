@@ -5,7 +5,6 @@ import TodoManager from '../../components/TodoManager/TodoManager';
 const Todos = () => {
   return (
     <div>
-      TodosRoute
       <TodoManager />
     </div>
   );

@@ -7,6 +7,8 @@ import SignIn from '../routes/Auth/SignIn';
 import Register from '../routes/Auth/Register';
 import Todos from '../routes/Todos/Todos';
 
+import { Box } from '@chakra-ui/core';
+
 const App = () => {
 
   const { setupAuthListener } = useAuth();
@@ -19,9 +21,13 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <Route path="/auth/signin" exact component={SignIn} />
-      <Route path="/auth/register" exact component={Register} />
-      <Route path="/" exact component={Todos} />
+      <Box h="100vh" bg="gray.100">
+        <Box maxW="960px" mx="auto">
+          <Route path="/auth/signin" exact component={SignIn} />
+          <Route path="/auth/register" exact component={Register} />
+          <Route path="/" exact component={Todos} />
+        </Box>
+      </Box>
     </Router>
   );
 }

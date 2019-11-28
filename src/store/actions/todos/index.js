@@ -32,7 +32,10 @@ export const createTodo = (todo) => (dispatch, getState) => {
   const config = {
     ...baseConfig,
     docData: { ...todo, createdBy: uid },
-    notifyMessage: 'Todo Created',
+    notifyMessage: {
+      title: 'Todo Created',
+      description: 'Created your todo successfully'
+    },
     actionType: TODO_CREATE,
   };
 
