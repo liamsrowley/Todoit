@@ -5,7 +5,7 @@ import Page from '../../components/UI/Page/Page';
 
 const Todos = () => {
   return (
-    <Page title="My Todos">
+    <Page title="My Todos" requireAuth>
       <TodoManager />
     </Page>
   );
