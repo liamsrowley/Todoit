@@ -16,7 +16,7 @@ const TodoCreate = () => {
   return (
     <TodoForm
       onFormSubmit={onFormSubmit}
-      buttonText="Add"
+      buttonText="Add Todo"
       form="todoCreate"
     />
   );
