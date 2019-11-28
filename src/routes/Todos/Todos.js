@@ -1,12 +1,13 @@
 import React from 'react';
 
 import TodoManager from '../../components/TodoManager/TodoManager';
+import Page from '../../components/UI/Page/Page';
 
 const Todos = () => {
   return (
-    <div>
+    <Page title="My Todos">
       <TodoManager />
-    </div>
+    </Page>
   );
 }
 

@@ -28,9 +28,7 @@ const Form = ({ handleSubmit, onFormSubmit }) => {
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <Field name="email" type="text" label="Email Address" component={renderInput} />
       <Field name="password" type="password" label="Password" component={renderInput} />
-      <button>
-        <Button variantColor="blue">Sign In</Button>
-      </button>
+      <Button variantColor="blue" type="submit">Sign In</Button>
     </form>
   );
 }

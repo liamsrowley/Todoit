@@ -16,7 +16,7 @@ const renderInput = ({ input, meta: { touched, error }, label, type, placeholder
     <FormControl isInvalid={isInvalid} w="100%">
       { label && <FormLabel htmlFor={input.name}>{label}</FormLabel> }
       <Input size="md" type={type} {...input} isInvalid={isInvalid} placeholder={placeholder} roundedRight="0" />
-      { error && <FormErrorMessage>{error}</FormErrorMessage> }
+      { error && touched && <FormErrorMessage>{error}</FormErrorMessage> }
     </FormControl>
   );
 }

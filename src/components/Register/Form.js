@@ -1,13 +1,25 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import {
+  Button,
+  Input,
+  Stack,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+} from '@chakra-ui/core';
+
 const renderInput = ({ input, meta: { error, touched }, type, label }) => {
+  const isInvalid = error && touched ? true : false;
   return (
-    <div className="field">
-      <label>{label}</label>
-      <input type={type} {...input} />
-      { touched && error && <span>{error}</span> }
-    </div>
+    <Stack spacing={4}>
+      <FormControl isInvalid={isInvalid}>
+        <FormLabel htmlFor={input.name}>{label}</FormLabel>
+        <Input size="md" type={type} {...input} isInvalid={isInvalid} />
+        <FormErrorMessage>{error}</FormErrorMessage>
+      </FormControl>
+    </Stack>
   );
 }
 
@@ -17,7 +29,7 @@ const Form = ({ handleSubmit, onFormSubmit }) => {
       <Field name="email" type="text" label="Email Address" component={renderInput} />
       <Field name="password" type="password" label="Password" component={renderInput} />
       <Field name="passwordConfirm" type="password" label="Confirm Password" component={renderInput} />
-      <button>Register</button>
+      <Button variantColor="blue" type="submit">Register</Button>
     </form>
   );
 }

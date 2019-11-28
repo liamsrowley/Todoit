@@ -13,11 +13,23 @@ const TodoCreate = () => {
     createTodo(formValues);
   }
 
+  const validate = (formValues) => {
+    const { title } = formValues;
+    const errors = {};
+
+    if (!title) {
+      errors.title = 'You must enter a title';
+    }
+
+    return errors;
+  }
+
   return (
     <TodoForm
       onFormSubmit={onFormSubmit}
       buttonText="Add Todo"
       form="todoCreate"
+      validate={validate}
     />
   );
 }
