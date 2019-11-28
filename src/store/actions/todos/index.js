@@ -34,7 +34,7 @@ export const createTodo = (todo) => (dispatch, getState) => {
     docData: { ...todo, createdBy: uid },
     notifyMessage: {
       title: 'Todo Created',
-      description: 'Created your todo successfully'
+      description: 'Todo has been created and saved.'
     },
     actionType: TODO_CREATE,
   };
@@ -55,7 +55,6 @@ export const fetchUserTodos = () => (dispatch, getState) => {
       operator: '==',
       value: uid
     },
-    notifyMessage: 'Fetched todos by user',
     actionType: TODO_FETCH_ALL
   };
 
@@ -69,7 +68,10 @@ export const deleteTodo = (id) => (dispatch) => {
   const config = {
     ...baseConfig,
     docId: id,
-    notifyMessage: 'Todo deleted',
+    notifyMessage: {
+      title: 'Todo Deleted',
+      description: 'We have deleted your todo for you.'
+    },
     actionType: TODO_DELETE
   };
 
@@ -86,7 +88,10 @@ export const editTodo = (id, formValues) => (dispatch, getState) => {
     ...baseConfig,
     docIdToEdit: id,
     docData: { ...todo, ...formValues },
-    notifyMessage: 'Todo edited',
+    notifyMessage: {
+      title: 'Todo Edited!',
+      description: 'Todo has been edited and saved.'
+    },
     actionType: TODO_EDIT
   };
 

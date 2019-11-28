@@ -7,6 +7,7 @@ import SignIn from '../routes/Auth/SignIn';
 import Register from '../routes/Auth/Register';
 import Todos from '../routes/Todos/Todos';
 import Header from './Header/Header';
+import Notify from './UI/Notify/Notify';
 
 import { Box } from '@chakra-ui/core';
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/" exact component={Todos} />
         </Box>
       </Box>
+      <Notify />
     </Router>
   );
 }

@@ -1,4 +1,5 @@
 import { firestore as db } from '../../../firebase.js';
+import { __createNotification } from '../notifications';
 
 // Wrapper action that takes a callback function and attempts to invoke it,
 // dispatching errors and notification messages when relevant
@@ -6,7 +7,7 @@ export const __requestAction = (params) => async (dispatch) => {
 
   const {
     callback,
-    notifyMessage,
+    notifyMessage = null,
     requestTypes
   } = params;
 
@@ -14,6 +15,9 @@ export const __requestAction = (params) => async (dispatch) => {
     dispatch({ type: requestTypes['start'] });
     await callback();
     dispatch({ type: requestTypes['success'] });
+    if (notifyMessage) {
+      dispatch(__createNotification(notifyMessage));
+    }
   } catch (error) {
     dispatch({ type: requestTypes['failure'], payload: error });
   }
