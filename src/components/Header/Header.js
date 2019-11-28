@@ -24,14 +24,10 @@ const Header = () => {
         <Flex align="center">
           <Stack spacing={4} isInline>
             { !isSignedIn ? (
-              <Fragment>
-                <Button size="sm" bg="blue.500" color="blue.50">
-                  <Link as={NavLink} to="/auth/register">Register</Link>
-                </Button>
-                <Button size="sm" bg="blue.500" color="blue.50">
-                  <Link as={NavLink} to="/auth/signin">Sign In</Link>
-                </Button>
-              </Fragment>
+              <Stack spacing={10} isInline>
+                <Link as={NavLink} to="/auth/register">Register</Link>
+                <Link as={NavLink} to="/auth/signin">Sign In</Link>
+              </Stack>
             ): (
               <UserHeader email={user.email} />
             )}

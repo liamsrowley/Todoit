@@ -23,12 +23,12 @@ const renderInput = ({ input, meta: { error, touched }, type, label }) => {
   );
 }
 
-const Form = ({ handleSubmit, onFormSubmit }) => {
+const Form = ({ handleSubmit, onFormSubmit, isLoading }) => {
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <Field name="email" type="text" label="Email Address" component={renderInput} />
       <Field name="password" type="password" label="Password" component={renderInput} />
-      <Button variantColor="blue" type="submit">Sign In</Button>
+      <Button variantColor="blue" type="submit" isLoading={isLoading}>Sign In</Button>
     </form>
   );
 }
@@ -55,6 +55,6 @@ const validate = (formValues) => {
 }
 
 export default reduxForm({
-  form: 'registerForm',
+  form: 'signInForm',
   validate
 })(Form);

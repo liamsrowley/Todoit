@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { useSelector } from 'react-redux';
 
 import {
   Button,
@@ -22,11 +23,12 @@ const renderInput = ({ input, meta: { touched, error }, label, type, placeholder
 }
 
 const TodoForm = ({ handleSubmit, onFormSubmit, buttonText }) => {
+  const isLoading = useSelector(state => state.loading.todo);
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <Stack isInline align="center" w="100%">
         <Field name="title" type="text" component={renderInput} placeholder="Add a todo..." />
-        <Button variantColor="blue" roundedRight="md" roundedLeft="0" type="submit">
+        <Button variantColor="blue" roundedRight="md" roundedLeft="0" type="submit" isLoading={isLoading}>
           {buttonText}
         </Button>
       </Stack>

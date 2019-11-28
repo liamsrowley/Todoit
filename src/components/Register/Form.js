@@ -23,13 +23,13 @@ const renderInput = ({ input, meta: { error, touched }, type, label }) => {
   );
 }
 
-const Form = ({ handleSubmit, onFormSubmit }) => {
+const Form = ({ handleSubmit, onFormSubmit, isLoading }) => {
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <Field name="email" type="text" label="Email Address" component={renderInput} />
       <Field name="password" type="password" label="Password" component={renderInput} />
       <Field name="passwordConfirm" type="password" label="Confirm Password" component={renderInput} />
-      <Button variantColor="blue" type="submit">Register</Button>
+      <Button variantColor="blue" type="submit" isLoading={isLoading}>Register</Button>
     </form>
   );
 }

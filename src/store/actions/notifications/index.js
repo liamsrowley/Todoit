@@ -8,9 +8,7 @@ export const NOTIFICATION_CLEAR = 'NOTIFICATION::CLEAR';
 export const __createNotification = (notification) => (dispatch) => {
   const notificationId = uuid();
   dispatch({ type: NOTIFICATION_CREATE, payload: { id: notificationId, ...notification } });
-  setTimeout(() => {
-    dispatch(__clearNotification(notificationId));
-  }, [300]);
+  dispatch(__clearNotification(notificationId));
 }
 
 const __clearNotification = (id) => {
