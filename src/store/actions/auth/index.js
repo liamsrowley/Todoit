@@ -35,7 +35,8 @@ export const register = (email, password) => (dispatch) => {
 
   const requestConfig = {
     ...baseConfig,
-    callback: authAction
+    callback: authAction,
+    redirectTo: '/'
   }
 
   dispatch(__requestAction(requestConfig));
@@ -48,7 +49,8 @@ export const signIn = (email, password) => (dispatch) => {
 
   const requestConfig = {
     ...baseConfig,
-    callback: authAction
+    callback: authAction,
+    redirectTo: '/'
   }
 
   dispatch(__requestAction(requestConfig));
@@ -61,7 +63,8 @@ export const signOut = () => (dispatch) => {
 
   const requestConfig = {
     ...baseConfig,
-    callback: authAction
+    callback: authAction,
+    redirectTo: '/auth/signin'
   }
 
   dispatch(__requestAction(requestConfig));

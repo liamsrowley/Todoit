@@ -1,6 +1,8 @@
 import React from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import {
   Menu,
   MenuButton,
@@ -12,6 +14,13 @@ import {
 } from '@chakra-ui/core';
 
 const UserHeader = ({ email }) => {
+  const { signOut } = useAuth();
+
+  const handleSignOut = () => {
+    console.log("WTF MAN");
+    signOut();
+  }
+
   return (
     <Menu>
       <MenuButton>
@@ -21,7 +30,7 @@ const UserHeader = ({ email }) => {
         </Stack>
       </MenuButton>
       <MenuList>
-        <MenuItem>Sign Out</MenuItem>
+        <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
       </MenuList>
     </Menu>
   );

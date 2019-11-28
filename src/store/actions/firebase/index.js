@@ -1,5 +1,6 @@
 import { firestore as db } from '../../../firebase.js';
 import { __createNotification } from '../notifications';
+import history from '../../../history';
 
 // Wrapper action that takes a callback function and attempts to invoke it,
 // dispatching errors and notification messages when relevant
@@ -8,7 +9,8 @@ export const __requestAction = (params) => async (dispatch) => {
   const {
     callback,
     notifyMessage = null,
-    requestTypes
+    requestTypes,
+    redirectTo
   } = params;
 
   try {
@@ -17,6 +19,9 @@ export const __requestAction = (params) => async (dispatch) => {
     dispatch({ type: requestTypes['success'] });
     if (notifyMessage) {
       dispatch(__createNotification(notifyMessage));
+    }
+    if (redirectTo) {
+      history.push(redirectTo);
     }
   } catch (error) {
     dispatch({ type: requestTypes['failure'], payload: error });
