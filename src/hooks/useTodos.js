@@ -13,8 +13,8 @@ export const useTodos = () => {
     dispatch(createTodo(todo));
   }
 
-  const doEditTodo = (id, formValues) => {
-    dispatch(editTodo(id, formValues));
+  const doEditTodo = async (id, formValues) => {
+    await dispatch(editTodo(id, formValues));
   }
 
   const doDeleteTodo = (id) => {

@@ -61,7 +61,7 @@ export const __createDoc = (params) => (dispatch) => {
 
 }
 
-export const __editDoc = (params) => (dispatch) => {
+export const __editDoc = (params) => async (dispatch) => {
 
   const {
     collectionName,
@@ -85,7 +85,7 @@ export const __editDoc = (params) => (dispatch) => {
     requestTypes
   };
 
-  dispatch(__requestAction(requestConfig));
+  await dispatch(__requestAction(requestConfig));
 
 }
 

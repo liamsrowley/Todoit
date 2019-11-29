@@ -8,8 +8,6 @@ import customTheme from './themes/theme';
 
 import App from './components/App';
 
-console.log(customTheme);
-
 render(
   <Provider store={store}>
     <ThemeProvider theme={customTheme}>

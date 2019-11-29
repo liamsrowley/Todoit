@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { __createDoc, __editDoc, __deleteDoc, __fetchCollection } from '../firebase';
 
 // Action Type Definitions
@@ -80,14 +81,17 @@ export const deleteTodo = (id) => (dispatch) => {
 }
 
 
-export const editTodo = (id, formValues) => (dispatch, getState) => {
+export const editTodo = (id, formValues) => async (dispatch, getState) => {
 
+  // Pull the todo data from the redux store
+  // Remove the isEditing key as it isn't needed in the database
   const todo = getState().todos[id];
+  const editedTodo = _.omit(todo, 'isEditing');
 
   const config = {
     ...baseConfig,
     docIdToEdit: id,
-    docData: { ...todo, ...formValues },
+    docData: { ...editedTodo, ...formValues },
     notifyMessage: {
       title: 'Todo Edited!',
       description: 'Todo has been edited and saved.'
@@ -95,6 +99,6 @@ export const editTodo = (id, formValues) => (dispatch, getState) => {
     actionType: TODO_EDIT
   };
 
-  dispatch(__editDoc(config));
+  await dispatch(__editDoc(config));
 
 }

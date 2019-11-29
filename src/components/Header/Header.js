@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -7,7 +7,6 @@ import UserHeader from '../UserHeader/UserHeader';
 import {
   Box,
   Flex,
-  Button,
   Stack,
   Link
 } from '@chakra-ui/core';

@@ -31,7 +31,7 @@ const TodoItem = ({ id, title, isCompleted, isEditing = false }) => {
   }
 
   const handleTodoEdit = () => {
-    toggleEditMode(id, !isEditing);
+    toggleEditMode(id, true);
   }
 
   return (
