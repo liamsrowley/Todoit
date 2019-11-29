@@ -1,9 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import RegisterForm from '../../components/Register/RegisterForm';
 import Page from '../../components/UI/Page/Page';
-
-
 
 const Register = () => {
   return (

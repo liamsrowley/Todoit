@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useSelector } from 'react-redux';
+
 import Form from './Form';
 
 const RegisterForm = () => {
