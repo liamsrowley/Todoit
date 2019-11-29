@@ -36,7 +36,6 @@ export const __requestAction = (params) => async (dispatch) => {
 * error handling, notification messages and invokes the callback function
 * *******************/
 export const __createDoc = (params) => (dispatch) => {
-
   const {
     collectionName,
     docData,
@@ -47,8 +46,13 @@ export const __createDoc = (params) => (dispatch) => {
 
   const firestoreAction = async () => {
     const docRef = await db.collection(collectionName).add(docData);
-    dispatch({ type: actionType, payload: { ...docData, id: docRef.id } });
-    console.log("Document added with id: ", docRef.id);
+    dispatch({
+      type: actionType,
+      payload: {
+        ...docData,
+        id: docRef.id
+      }
+    });
   };
 
   const requestConfig = {
@@ -58,11 +62,10 @@ export const __createDoc = (params) => (dispatch) => {
   };
 
   dispatch(__requestAction(requestConfig));
-
 }
 
-export const __editDoc = (params) => async (dispatch) => {
 
+export const __editDoc = (params) => async (dispatch) => {
   const {
     collectionName,
     docIdToEdit,
@@ -76,7 +79,13 @@ export const __editDoc = (params) => async (dispatch) => {
     await db.collection(collectionName).doc(docIdToEdit).update(
       docData
     );
-    dispatch({ type: actionType, payload: { id: docIdToEdit, ...docData }});
+    dispatch({
+      type: actionType,
+      payload: {
+        id: docIdToEdit,
+        ...docData
+      }
+    });
   };
 
   const requestConfig = {
@@ -86,11 +95,10 @@ export const __editDoc = (params) => async (dispatch) => {
   };
 
   await dispatch(__requestAction(requestConfig));
-
 }
 
-export const __deleteDoc = (params) => (dispatch) => {
 
+export const __deleteDoc = (params) => (dispatch) => {
   const {
     collectionName,
     docId,
@@ -101,7 +109,10 @@ export const __deleteDoc = (params) => (dispatch) => {
 
   const firestoreAction = async () => {
     await db.collection(collectionName).doc(docId).delete();
-    dispatch({ type: actionType, payload: docId });
+    dispatch({
+      type: actionType,
+      payload: docId
+    });
   };
 
   const requestConfig = {
@@ -111,11 +122,10 @@ export const __deleteDoc = (params) => (dispatch) => {
   };
 
   dispatch(__requestAction(requestConfig));
-
 }
 
-export const __fetchCollection = (params) => (dispatch) => {
 
+export const __fetchCollection = (params) => (dispatch) => {
   const {
     collectionName,
     actionType,
@@ -130,10 +140,16 @@ export const __fetchCollection = (params) => (dispatch) => {
     querySnapshot.forEach(doc => {
       collection = {
         ...collection,
-        [doc.id]: { id: doc.id, ...doc.data() }
+        [doc.id]: {
+          id: doc.id,
+          ...doc.data()
+        }
       }
     })
-    dispatch({ type: actionType, payload: collection });
+    dispatch({
+      type: actionType,
+      payload: collection
+    });
   };
 
   const requestConfig = {
@@ -143,11 +159,10 @@ export const __fetchCollection = (params) => (dispatch) => {
   };
 
   dispatch(__requestAction(requestConfig));
-
 }
 
-export const __fetchDocById = (params) => (dispatch) => {
 
+export const __fetchDocById = (params) => (dispatch) => {
   const {
     collectionName,
     docId,
@@ -158,7 +173,10 @@ export const __fetchDocById = (params) => (dispatch) => {
 
   const firestoreAction = async () => {
     const doc = await db.collection(collectionName).doc(docId).get();
-    dispatch({ type: actionType, payload: doc.data() });
+    dispatch({
+      type: actionType,
+      payload: doc.data()
+    });
   };
 
   const requestConfig = {
@@ -168,5 +186,4 @@ export const __fetchDocById = (params) => (dispatch) => {
   };
 
   dispatch(__requestAction(requestConfig));
-
 }
