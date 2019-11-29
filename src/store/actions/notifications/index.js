@@ -1,4 +1,3 @@
-
 import uuid from 'uuid/v4';
 
 // Action Type Definitions

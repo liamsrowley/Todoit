@@ -25,15 +25,17 @@ const baseConfig = {
   requestTypes
 }
 
-
+/**
+* @description - Creates a todo and adds it to the database
+* @param {Object} todo - Object containing the todo
+**/
 export const createTodo = (todo) => (dispatch, getState) => {
-
   const uid = getState().auth.uid;
 
   const config = {
     ...baseConfig,
     docData: { ...todo, createdBy: uid },
-    notifyMessage: {
+    notification: {
       title: 'Todo Created',
       description: 'Todo has been created and saved.'
     },
@@ -41,12 +43,12 @@ export const createTodo = (todo) => (dispatch, getState) => {
   };
 
   dispatch(__createDoc(config));
-
 }
 
-
+/**
+* @description - Fetches all todos created by the user
+**/
 export const fetchUserTodos = () => (dispatch, getState) => {
-
   const uid = getState().auth.uid;
 
   const config = {
@@ -60,16 +62,17 @@ export const fetchUserTodos = () => (dispatch, getState) => {
   };
 
   dispatch(__fetchCollection(config));
-
 }
 
-
+/**
+* @description - Removes a todo from the database
+* @param {String} id - The id of the todo that will be deleted
+**/
 export const deleteTodo = (id) => (dispatch) => {
-
   const config = {
     ...baseConfig,
     docId: id,
-    notifyMessage: {
+    notification: {
       title: 'Todo Deleted',
       description: 'We have deleted your todo for you.'
     },
@@ -77,12 +80,16 @@ export const deleteTodo = (id) => (dispatch) => {
   };
 
   dispatch(__deleteDoc(config));
-
 }
 
-
+/**
+* @description - Edits a todo by pulling its values from state and merging
+* them with the newly edited values
+* @param {String} id - The id of the todo that will be edited
+* @param {Object} formValues - Object containing the new values that will be
+* merged with the current values
+**/
 export const editTodo = (id, formValues) => async (dispatch, getState) => {
-
   // Pull the todo data from the redux store
   // Remove the isEditing key as it isn't needed in the database
   const todo = getState().todos[id];
@@ -92,7 +99,7 @@ export const editTodo = (id, formValues) => async (dispatch, getState) => {
     ...baseConfig,
     docIdToEdit: id,
     docData: { ...editedTodo, ...formValues },
-    notifyMessage: {
+    notification: {
       title: 'Todo Edited!',
       description: 'Todo has been edited and saved.'
     },
@@ -100,5 +107,4 @@ export const editTodo = (id, formValues) => async (dispatch, getState) => {
   };
 
   await dispatch(__editDoc(config));
-
 }

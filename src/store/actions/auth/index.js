@@ -21,13 +21,7 @@ const baseConfig = {
   requestTypes
 }
 
-/********************
-* The following actions follow the same format:
-* A callback function that carries out the main action (sign in, registration, etc)
-* A requestConfig object that is then passed into the __requestAction action
-* __requestAction then dispatches the appropriate actions for loading states,
-* error handling, notification messages and invokes the callback function
-* *******************/
+
 export const register = (email, password) => (dispatch) => {
   const authAction = async () => {
     await auth.createUserWithEmailAndPassword(email, password);
@@ -41,6 +35,7 @@ export const register = (email, password) => (dispatch) => {
 
   dispatch(__requestAction(requestConfig));
 }
+
 
 export const signIn = (email, password) => (dispatch) => {
   const authAction = async () => {
@@ -56,6 +51,7 @@ export const signIn = (email, password) => (dispatch) => {
   dispatch(__requestAction(requestConfig));
 }
 
+
 export const signOut = () => (dispatch) => {
   const authAction = async () => {
     await auth.signOut();
@@ -69,6 +65,7 @@ export const signOut = () => (dispatch) => {
 
   dispatch(__requestAction(requestConfig));
 }
+
 
 export const setupAuthListener = () => (dispatch) => {
   auth.onAuthStateChanged(user => {
