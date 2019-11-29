@@ -1,33 +1,16 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import FormInput from '../UI/FormInput/FormInput';
 
 import {
-  Button,
-  Input,
-  Stack,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
+  Button
 } from '@chakra-ui/core';
-
-const renderInput = ({ input, meta: { error, touched }, type, label }) => {
-  const isInvalid = error && touched ? true : false;
-  return (
-    <Stack spacing={4}>
-      <FormControl isInvalid={isInvalid}>
-        <FormLabel htmlFor={input.name}>{label}</FormLabel>
-        <Input size="md" type={type} {...input} isInvalid={isInvalid} />
-        <FormErrorMessage>{error}</FormErrorMessage>
-      </FormControl>
-    </Stack>
-  );
-}
 
 const Form = ({ handleSubmit, onFormSubmit, isLoading }) => {
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
-      <Field name="email" type="text" label="Email Address" component={renderInput} />
-      <Field name="password" type="password" label="Password" component={renderInput} />
+      <Field name="email" type="text" label="Email Address" component={FormInput} />
+      <Field name="password" type="password" label="Password" component={FormInput} />
       <Button variantColor="blue" type="submit" isLoading={isLoading}>Sign In</Button>
     </form>
   );

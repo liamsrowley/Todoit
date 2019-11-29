@@ -35,7 +35,7 @@ const TodoItem = ({ id, title, isCompleted, isEditing = false }) => {
   }
 
   return (
-    <Stack isInline align="center" justify="space-between" py={6} borderBottom="1px" borderColor="gray.200">
+    <Stack isInline align="center" justify="space-between" py={8} borderBottom="1px" borderColor="gray.200">
       <Stack isInline align="center">
         <TodoControlBox onClick={handleTodoCompletion} isCompleted={isCompleted} />
         { !isEditing ? (

@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <Box bg="white" w="100%" h="70px">
       <Flex align="center" justify="space-between" h="100%" maxW="960px" mx="auto">
-        <Link as={NavLink} to="/">Todoit</Link>
+        <Link as={NavLink} to="/" fontWeight="semibold">Todoit</Link>
         <Flex align="center">
           <Stack spacing={4} isInline>
             { !isSignedIn ? (

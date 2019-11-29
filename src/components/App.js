@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <Box minH="100vh" bg="gray.100">
+      <Box minH="100vh" bg="gray.100" fontFamily="Roboto">
         <Header />
         <Box maxW="960px" mx="auto" bg="white" mt={5} rounded={3} p={10}>
           <Route path="/auth/signin" exact component={SignIn} />

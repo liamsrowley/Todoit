@@ -7,17 +7,13 @@ import {
   Input,
   Stack,
   FormControl,
-  FormLabel,
-  FormErrorMessage,
 } from '@chakra-ui/core';
 
-const renderInput = ({ input, meta: { touched, error }, label, type, placeholder }) => {
+const renderInput = ({ input, meta: { error, touched }, type, label }) => {
   const isInvalid = error && touched ? true : false;
   return (
     <FormControl isInvalid={isInvalid} w="100%">
-      { label && <FormLabel htmlFor={input.name}>{label}</FormLabel> }
-      <Input size="md" type={type} {...input} isInvalid={isInvalid} placeholder={placeholder} roundedRight="0" />
-      { error && touched && <FormErrorMessage>{error}</FormErrorMessage> }
+      <Input size="md" type={type} {...input} isInvalid={isInvalid} roundedRight="0" />
     </FormControl>
   );
 }
