@@ -3,6 +3,7 @@ import { todoReducer } from './todoReducer';
 import { authReducer } from './authReducer';
 import { notificationReducer } from './notificationReducer';
 import { loadingReducer } from './loadingReducer';
+import { errorReducer } from './errorReducer';
 import { reducer as formReducer } from 'redux-form';
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
   'todos': todoReducer,
   'form': formReducer,
   'loading': loadingReducer,
-  'notifications': notificationReducer
+  'notifications': notificationReducer,
+  'errors': errorReducer
 });

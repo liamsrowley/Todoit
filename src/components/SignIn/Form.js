@@ -17,7 +17,6 @@ const Form = ({ handleSubmit, onFormSubmit, isLoading }) => {
 }
 
 const validate = (formValues) => {
-
   const {
     email,
     password
@@ -34,7 +33,6 @@ const validate = (formValues) => {
   }
 
   return errors;
-
 }
 
 export default reduxForm({

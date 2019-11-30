@@ -16,7 +16,7 @@ const Page = ({ title, children, requireAuth = false }) => {
 
   return (
     <Flex direction="column" align="flex-start" justify="flex-start" w="100%">
-      <Heading as="h3" size="lg" mb={3}>{title}</Heading>
+      <Heading as="h3" size="lg" mb={8}>{title}</Heading>
       <Flex direction="column" w="100%">
         {children}
       </Flex>

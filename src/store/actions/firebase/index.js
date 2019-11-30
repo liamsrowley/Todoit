@@ -1,5 +1,6 @@
 import { firestore as db } from '../../../firebase.js';
 import { __createNotification } from '../notifications';
+import { __createError } from '../errors';
 import history from '../../../history';
 
 /**
@@ -35,7 +36,8 @@ export const __requestAction = (params) => async (dispatch) => {
       history.push(redirectTo);
     }
   } catch (error) {
-    dispatch({ type: requestTypes['failure'], payload: error });
+    dispatch({ type: requestTypes['failure'] });
+    dispatch(__createError(error));
   }
 }
 
