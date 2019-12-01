@@ -74,13 +74,13 @@ export const __createDoc = (params) => (dispatch) => {
     });
   };
 
-  const requestConfig = {
+  const requestParams = {
     callback: firestoreAction,
     notification,
     requestTypes
   };
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
 }
 
 /**
@@ -119,13 +119,13 @@ export const __editDoc = (params) => async (dispatch) => {
     });
   };
 
-  const requestConfig = {
+  const requestParams = {
     callback: firestoreAction,
     notification,
     requestTypes
   };
 
-  await dispatch(__requestAction(requestConfig));
+  await dispatch(__requestAction(requestParams));
 }
 
 /**
@@ -157,13 +157,13 @@ export const __deleteDoc = (params) => (dispatch) => {
     });
   };
 
-  const requestConfig = {
+  const requestParams = {
     callback: firestoreAction,
     notification,
     requestTypes
   };
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
 }
 
 /**
@@ -208,13 +208,13 @@ export const __fetchCollection = (params) => (dispatch) => {
     });
   };
 
-  const requestConfig = {
+  const requestParams = {
     callback: firestoreAction,
     notification,
     requestTypes
   };
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
 }
 
 /**
@@ -246,11 +246,11 @@ export const __fetchDocById = (params) => (dispatch) => {
     });
   };
 
-  const requestConfig = {
+  const requestParams = {
     callback: firestoreAction,
     notification,
     requestTypes
   };
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
 }
