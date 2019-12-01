@@ -8,13 +8,14 @@ const SignInForm = () => {
 
   const { signIn } = useAuth();
   const isLoading = useSelector(state => state.loading.auth);
+  const authError = useSelector(state => state.errors.auth);
 
   const onFormSubmit = ({ email, password }) => {
     signIn(email, password);
   }
 
   return (
-    <Form onFormSubmit={onFormSubmit} isLoading={isLoading} />
+    <Form onFormSubmit={onFormSubmit} isLoading={isLoading} submissionError={authError}/>
   );
 
 }

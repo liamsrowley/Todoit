@@ -36,8 +36,8 @@ export const __requestAction = (params) => async (dispatch) => {
       history.push(redirectTo);
     }
   } catch (error) {
-    dispatch({ type: requestTypes['failure'] });
-    dispatch(__createError(error));
+    dispatch({ type: requestTypes['failure'], payload: error.message });
+    // dispatch(__createError(error));
   }
 }
 
