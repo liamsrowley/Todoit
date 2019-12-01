@@ -42,6 +42,10 @@ const validate = (formValues) => {
     errors.password = 'You must enter a password';
   }
 
+  if (!passwordConfirm) {
+    errors.passwordConfirm = 'You must enter a password';
+  }
+
   if (password !== passwordConfirm) {
     errors.password = errors.passwordConfirm = 'Your passwords must match';
   }
