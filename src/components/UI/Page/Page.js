@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
   Heading,
-  Flex
+  Stack,
+  Flex,
+  Button
 } from '@chakra-ui/core';
 
 const Page = ({ title, children, requireAuth = false }) => {
@@ -11,7 +14,12 @@ const Page = ({ title, children, requireAuth = false }) => {
   const uid = useSelector(state => state.auth.uid);
 
   if (requireAuth && !uid) {
-    return <div>You must sign in to view this page</div>;
+    return (
+      <Stack d="flex" align="center" justify="center">
+        <Heading as="h1" size="md" textAlign="center">Please sign in to view this page</Heading>
+        <Button as={Link} variantColor="blue" to="/auth/signin" mt={2}>Sign In</Button>
+      </Stack>
+    );
   }
 
   return (

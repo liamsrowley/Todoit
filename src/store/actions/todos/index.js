@@ -35,10 +35,6 @@ export const createTodo = (todo) => (dispatch, getState) => {
   const config = {
     ...baseConfig,
     docData: { ...todo, createdBy: uid },
-    notification: {
-      title: 'Todo Created',
-      description: 'Todo has been created and saved.'
-    },
     actionType: TODO_CREATE,
   };
 
@@ -72,10 +68,6 @@ export const deleteTodo = (id) => (dispatch) => {
   const config = {
     ...baseConfig,
     docId: id,
-    notification: {
-      title: 'Todo Deleted',
-      description: 'We have deleted your todo for you.'
-    },
     actionType: TODO_DELETE
   };
 
@@ -99,10 +91,6 @@ export const editTodo = (id, formValues) => async (dispatch, getState) => {
     ...baseConfig,
     docIdToEdit: id,
     docData: { ...editedTodo, ...formValues },
-    notification: {
-      title: 'Todo Edited!',
-      description: 'Todo has been edited and saved.'
-    },
     actionType: TODO_EDIT
   };
 
