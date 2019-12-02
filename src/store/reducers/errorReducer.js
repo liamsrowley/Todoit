@@ -1,17 +1,17 @@
 export const errorReducer = (state = {}, action) => {
 
   const { type } = action;
-  const matches = /(.*)::REQUEST_FAILURE/.exec(type);
+  const matches = /(.*)::REQUEST_(FAILURE|SUCCESS)/.exec(type);
 
   if (!matches) {
     return state;
   }
 
-  const [, actionType] = matches;
+  const [, actionType, actionStatus] = matches;
 
   return {
     ...state,
-    [actionType.toLowerCase()]: action.payload
+    [actionType.toLowerCase()]: actionStatus === 'FAILURE' ? action.payload : null
   }
 
 

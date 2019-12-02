@@ -3,8 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import history from '../history';
 
-import SignIn from '../routes/Auth/SignIn';
-import Register from '../routes/Auth/Register';
+import Auth from '../routes/Auth';
 import Todos from '../routes/Todos/Todos';
 import Header from './Header/Header';
 import Notify from './UI/Notify/Notify';
@@ -28,8 +27,9 @@ const App = () => {
       <Box minH="100vh" bg="gray.100" fontFamily="Roboto">
         <Header />
         <Box maxW="960px" mx="auto" bg="white" mt={5} rounded={3} p={10}>
-          <Route path="/auth/signin" exact component={SignIn} />
-          <Route path="/auth/register" exact component={Register} />
+          <Route path="/auth/signin" exact component={Auth} />
+          <Route path="/auth/register" exact component={Auth} />
+          <Route path="/auth/reset" exact component={Auth} />
           <Route path="/" exact component={Todos} />
         </Box>
       </Box>

@@ -27,13 +27,13 @@ export const register = (email, password) => (dispatch) => {
     await auth.createUserWithEmailAndPassword(email, password);
   }
 
-  const requestConfig = {
+  const requestParams = {
     ...baseConfig,
     callback: authAction,
     redirectTo: '/'
   }
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
 }
 
 
@@ -42,13 +42,13 @@ export const signIn = (email, password) => (dispatch) => {
     await auth.signInWithEmailAndPassword(email, password);
   }
 
-  const requestConfig = {
+  const requestParams = {
     ...baseConfig,
     callback: authAction,
     redirectTo: '/'
   }
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
 }
 
 
@@ -57,13 +57,30 @@ export const signOut = () => (dispatch) => {
     await auth.signOut();
   }
 
-  const requestConfig = {
+  const requestParams = {
     ...baseConfig,
     callback: authAction,
     redirectTo: '/auth/signin'
   }
 
-  dispatch(__requestAction(requestConfig));
+  dispatch(__requestAction(requestParams));
+}
+
+export const sendPasswordResetEmail = (email) => (dispatch) => {
+  const authAction = async () => {
+    await auth.sendPasswordResetEmail(email);
+  }
+
+  const requestParams = {
+    ...baseConfig,
+    callback: authAction,
+    notification: {
+      title: 'Email Sent',
+      description: 'Please check your spam folder'
+    }
+  }
+
+  dispatch(__requestAction(requestParams));
 }
 
 
