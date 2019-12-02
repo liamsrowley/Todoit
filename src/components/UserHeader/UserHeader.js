@@ -9,15 +9,13 @@ import {
   Stack,
   MenuList,
   MenuItem,
-  Box,
-  Text
+  Avatar
 } from '@chakra-ui/core';
 
 const UserHeader = ({ email }) => {
   const { signOut } = useAuth();
 
   const handleSignOut = () => {
-    console.log("WTF MAN");
     signOut();
   }
 
@@ -25,8 +23,7 @@ const UserHeader = ({ email }) => {
     <Menu>
       <MenuButton>
         <Stack align="center" isInline>
-          <Text>{email}</Text>
-          <Box as={IoIosArrowDown} size="16px" />
+          <Avatar size="sm" />
         </Stack>
       </MenuButton>
       <MenuList>

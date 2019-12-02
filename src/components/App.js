@@ -11,6 +11,8 @@ import Notify from './UI/Notify/Notify';
 
 import { Box } from '@chakra-ui/core';
 
+import './App.css';
+
 const App = () => {
 
   const { setupAuthListener } = useAuth();

@@ -12,13 +12,12 @@ import {
 } from '@chakra-ui/core';
 
 const Header = () => {
-
   const user = useSelector(state => state.auth);
   const isSignedIn = user.uid;
 
   return (
     <Box bg="white" w="100%" h="70px">
-      <Flex align="center" justify="space-between" h="100%" maxW="960px" mx="auto">
+      <Flex align="center" justify="space-between" h="100%" maxW="960px" mx="auto" px={[10, 10, 10, 0]}>
         <Link as={NavLink} to="/" fontWeight="semibold">Todoit</Link>
         <Flex align="center">
           <Stack spacing={4} isInline>
