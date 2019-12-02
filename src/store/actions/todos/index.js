@@ -52,7 +52,8 @@ export const fetchUserTodos = () => (dispatch, getState) => {
     query: {
       key: 'createdBy',
       operator: '==',
-      value: uid
+      value: uid,
+      order: 'dateCreated'
     },
     actionType: TODO_FETCH_ALL
   };

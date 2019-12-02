@@ -63,12 +63,17 @@ export const __createDoc = (params) => (dispatch) => {
 
   // Define the database action we want to do
   const firestoreAction = async () => {
-    const docRef = await db.collection(collectionName).add(docData);
+    const creationDate = Date.now();
+    const docRef = await db.collection(collectionName).add({
+      ...docData,
+      dateCreated: creationDate
+    });
     dispatch({
       type: actionType,
       payload: {
         ...docData,
-        id: docRef.id
+        dateCreated: creationDate,
+        id: docRef.id,
       }
     });
   };
@@ -184,13 +189,23 @@ export const __fetchCollection = (params) => (dispatch) => {
   const {
     collectionName,
     actionType,
-    query: { key, operator, value },
+    query: { key, operator, value, order },
     notification,
-    requestTypes
+    requestTypes,
   } = params;
 
   const firestoreAction = async () => {
-    const querySnapshot = await db.collection(collectionName).where(key, operator, value).get()
+    let colRef = db.collection(collectionName);
+    let querySnapshot;
+
+    if (operator && !order) {
+      querySnapshot = await colRef.where(key, operator, value).get();
+    } else if (order && !operator) {
+      querySnapshot = await colRef.orderBy(order).get();
+    } else if (order && operator) {
+      querySnapshot = await colRef.where(key, operator, value).orderBy(order).get();
+    }
+
     let collection = {};
     querySnapshot.forEach(doc => {
       collection = {
