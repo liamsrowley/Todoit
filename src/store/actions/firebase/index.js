@@ -61,7 +61,6 @@ export const __createDoc = (params) => (dispatch) => {
     requestTypes
   } = params;
 
-  // Define the database action we want to do
   const firestoreAction = async () => {
     const creationDate = Date.now();
     const docRef = await db.collection(collectionName).add({
