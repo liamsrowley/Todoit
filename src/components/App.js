@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import history from '../history';
 
-import Auth from '../routes/Auth';
+import Auth from '../routes/Auth/Auth';
 import Todos from '../routes/Todos/Todos';
 import Header from './Header/Header';
 import Notify from './UI/Notify/Notify';
