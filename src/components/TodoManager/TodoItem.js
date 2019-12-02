@@ -47,8 +47,8 @@ const TodoItem = ({ id, title, isCompleted, isEditing = false }) => {
       </Stack>
       <Menu>
         <MenuButton>
-          <IoIosMore />
-         </MenuButton>
+          <Box as={IoIosMore} h="20px" w="20px" />
+        </MenuButton>
         <MenuList>
           <MenuItem onClick={handleTodoEdit}>
             <Box as={IoIosCreate} mr={3} />

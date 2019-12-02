@@ -1,12 +1,10 @@
 import React from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
 
 import { useAuth } from '../../hooks/useAuth';
 
 import {
   Menu,
   MenuButton,
-  Stack,
   MenuList,
   MenuItem,
   Avatar
@@ -22,9 +20,7 @@ const UserHeader = ({ email }) => {
   return (
     <Menu>
       <MenuButton>
-        <Stack align="center" isInline>
-          <Avatar size="sm" />
-        </Stack>
+        <Avatar size="sm" />
       </MenuButton>
       <MenuList>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>

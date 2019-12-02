@@ -1,6 +1,5 @@
 import { firestore as db } from '../../../firebase.js';
 import { __createNotification } from '../notifications';
-import { __createError } from '../errors';
 import history from '../../../history';
 
 /**
