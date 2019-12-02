@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import Form from './Form';
 
 import {
-  Link as ChakraLink,
   Stack
 } from '@chakra-ui/core';
 
