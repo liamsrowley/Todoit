@@ -1,6 +1,7 @@
 import { firestore as db } from '../../../firebase.js';
 import { __createNotification } from '../notifications';
 import history from '../../../history';
+import errorStrings from '../../../errorStrings';
 
 /**
 * @description - Wrapper that executes database actions and handles dispatching
@@ -35,8 +36,7 @@ export const __requestAction = (params) => async (dispatch) => {
       history.push(redirectTo);
     }
   } catch (error) {
-    dispatch({ type: requestTypes['failure'], payload: error.message });
-    // dispatch(__createError(error));
+    dispatch({ type: requestTypes['failure'], payload: errorStrings[error.code] });
   }
 }
 

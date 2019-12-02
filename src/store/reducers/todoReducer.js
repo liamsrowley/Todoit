@@ -5,6 +5,10 @@ import {
   TODO_EDIT
 } from '../actions/todos';
 
+import {
+  SIGN_OUT
+} from '../actions/auth';
+
 import _ from 'lodash';
 
 export const todoReducer = (state = {}, action) => {
@@ -23,6 +27,9 @@ export const todoReducer = (state = {}, action) => {
 
     case TODO_DELETE:
       return _.omit(state, action.payload);
+
+    case SIGN_OUT:
+      return {};
 
     default:
       return state;
