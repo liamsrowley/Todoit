@@ -4,13 +4,14 @@ import 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBM5VJSN4b3NsTJiDYsA3yga2BjENeglmw",
-  authDomain: "todoit-d08f4.firebaseapp.com",
-  databaseURL: "https://todoit-d08f4.firebaseio.com",
-  projectId: "todoit-d08f4",
-  storageBucket: "todoit-d08f4.appspot.com",
-  messagingSenderId: "62582518292",
-  appId: "1:62582518292:web:25aa863f972ef635e16d01"
+  apiKey: "AIzaSyBPR0VJK0ycqyVcaPlF-JHzYYFVPQAQNCs",
+  authDomain: "chatapp-31169.firebaseapp.com",
+  databaseURL: "https://chatapp-31169.firebaseio.com",
+  projectId: "chatapp-31169",
+  storageBucket: "chatapp-31169.appspot.com",
+  messagingSenderId: "271447545022",
+  appId: "1:271447545022:web:79a71d165c70e056a1baef",
+  measurementId: "G-JKRSXFXTFJ"
 };
 
 // Initialize Firebase

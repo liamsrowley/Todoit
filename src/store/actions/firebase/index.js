@@ -3,21 +3,8 @@ import { __createNotification } from '../notifications';
 import history from '../../../history';
 import errorStrings from '../../../errorStrings';
 
-/**
-* @description - Wrapper that executes database actions and handles dispatching
-* errors and notifications when relevant.
-* @param {Object} params - Configuration object containing the following:
-*   @param {Function} callback - The action to perform on the database
-*   @param {Object} notification - An object detailing which notification to send upon completion
-*     @param {String} title - The name of the notification
-*     @param {String} description - A description of what action has been done
-*   @param {Object} requestTypes - An object containing string definitions used
-*   to dispatch request states.
-*   @param {String} redirectTo - A string path to programatically redirect the user
-*   upon action completion
-**/
-export const __requestAction = (params) => async (dispatch) => {
 
+export const __requestAction = (params) => async (dispatch) => {
   const {
     callback,
     notification = null,
@@ -36,22 +23,11 @@ export const __requestAction = (params) => async (dispatch) => {
       history.push(redirectTo);
     }
   } catch (error) {
+    console.log(error);
     dispatch({ type: requestTypes['failure'], payload: errorStrings[error.code] });
   }
 }
 
-/**
-* @description - Custom Firebase function that adds data to a collection
-* @param {Object} params - Configuration object containing the following:
-*   @param {String} collectionName - The collection the data will be added to
-*   @param {Object} docData - The data that will be added to the collection
-*   @param {String} actionType - The action type that will be dispatched upon completion
-*   @param {Object} notification - An object detailing which notification to send upon completion
-*     @param {String} title - The name of the notification
-*     @param {String} description - A description of what action has been done
-*   @param {Object} requestTypes - An object containing string definitions used
-*   to dispatch request states.
-**/
 export const __createDoc = (params) => (dispatch) => {
   const {
     collectionName,
@@ -86,19 +62,6 @@ export const __createDoc = (params) => (dispatch) => {
   dispatch(__requestAction(requestParams));
 }
 
-/**
-* @description - Custom Firebase function that edits a doc based on the Id
-* @param {Object} params - Configuration object containing the following:
-*   @param {String} collectionName - The collection the data will be added to
-*   @param {String} docIdToEdit - The id of the doc that will be edited
-*   @param {Object} docData - The data that will be added to the collection
-*   @param {String} actionType - The action type that will be dispatched upon completion
-*   @param {Object} notification - An object detailing which notification to send upon completion
-*     @param {String} title - The name of the notification
-*     @param {String} description - A description of what action has been done
-*   @param {Object} requestTypes - An object containing string definitions used
-*   to dispatch request states.
-**/
 export const __editDoc = (params) => async (dispatch) => {
   const {
     collectionName,
@@ -131,18 +94,6 @@ export const __editDoc = (params) => async (dispatch) => {
   await dispatch(__requestAction(requestParams));
 }
 
-/**
-* @description - Custom Firebase function that deletes a doc from a collection
-* @param {Object} params - Configuration object containing the following:
-*   @param {String} collectionName - The collection the data will be added to
-*   @param {String} docId - The id of the doc that will be deleted
-*   @param {String} actionType - The action type that will be dispatched upon completion
-*   @param {Object} notification - An object detailing which notification to send upon completion
-*     @param {String} title - The name of the notification
-*     @param {String} description - A description of what action has been done
-*   @param {Object} requestTypes - An object containing string definitions used
-*   to dispatch request states.
-**/
 export const __deleteDoc = (params) => (dispatch) => {
   const {
     collectionName,
@@ -169,21 +120,6 @@ export const __deleteDoc = (params) => (dispatch) => {
   dispatch(__requestAction(requestParams));
 }
 
-/**
-* @description - Custom Firebase function that fetches a collection
-* @param {Object} params - Configuration object containing the following:
-*   @param {String} collectionName - The collection the data will be added to
-*   @param {String} actionType - The action type that will be dispatched upon completion
-*   @param {Object} query - An object containing keys to construct a query
-*     @param {String} key - The key we want to operate on
-*     @param {String} operator - The type of operation (Ex. === or !==)
-*     @param {String} value - The value we want to test against the key
-*   @param {Object} notification - An object detailing which notification to send upon completion
-*     @param {String} title - The name of the notification
-*     @param {String} description - A description of what action has been done
-*   @param {Object} requestTypes - An object containing string definitions used
-*   to dispatch request states.
-**/
 export const __fetchCollection = (params) => (dispatch) => {
   const {
     collectionName,
@@ -202,7 +138,9 @@ export const __fetchCollection = (params) => (dispatch) => {
     } else if (order && !operator) {
       querySnapshot = await colRef.orderBy(order).get();
     } else if (order && operator) {
+      console.log('This one should fire');
       querySnapshot = await colRef.where(key, operator, value).orderBy(order).get();
+      console.log('but wtf');
     }
 
     let collection = {};
@@ -230,18 +168,6 @@ export const __fetchCollection = (params) => (dispatch) => {
   dispatch(__requestAction(requestParams));
 }
 
-/**
-* @description - Custom Firebase function that fetches a doc by its id
-* @param {Object} params - Configuration object containing the following:
-*   @param {String} collectionName - The collection the data will be added to
-*   @param {String} docId - The id of the doc that will be deleted
-*   @param {String} actionType - The action type that will be dispatched upon completion
-*   @param {Object} notification - An object detailing which notification to send upon completion
-*     @param {String} title - The name of the notification
-*     @param {String} description - A description of what action has been done
-*   @param {Object} requestTypes - An object containing string definitions used
-*   to dispatch request states.
-**/
 export const __fetchDocById = (params) => (dispatch) => {
   const {
     collectionName,
